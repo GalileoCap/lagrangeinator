@@ -1,3 +1,6 @@
+//S: Config
+__Coordinates= process.argv[2];
+
 //************************************
 //S: Lagrange Interpolating Polynomial 
 
@@ -40,10 +43,18 @@ function create_function(coordinates){ //U: Creates the function from a given se
 	check_function(r, coordinates);
 }
 
-coordinates_test= [];
-coordinates_test.push([[1, 1], [2, 2], [3, 3]]);
-coordinates_test.push([[1, 1], [2, 2], [3, 1]]);
-coordinates_test.push([[1, 1], [2, 0], [3, 1]]);
-coordinates_test.push([[1, 1], [2, 2], [3, 9]]);
-
-coordinates_test.forEach((c) => create_function(c));
+if (__Coordinates){
+	//let use_coordinates= [];
+	//let __Coord= __Coordinates.split(/\s*;\s*/g);
+	//__Coord.forEach((c) => { use_coordinates.push(c) });
+	//console.log("START Using coordinates", use_coordinates);
+	create_function(__Coordinates);
+} else {
+	console.log("START No coordinates provided, using test ones");
+	coordinates_test= [];
+	coordinates_test.push([[1, 1], [2, 2], [3, 3]]);
+	coordinates_test.push([[1, 1], [2, 2], [3, 1]]);
+	coordinates_test.push([[1, 1], [2, 0], [3, 1]]);
+	coordinates_test.push([[1, 1], [2, 2], [3, 9]]);
+	coordinates_test.forEach((c) => create_function(c));
+}
